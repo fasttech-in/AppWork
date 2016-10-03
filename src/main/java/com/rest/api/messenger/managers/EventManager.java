@@ -5,9 +5,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import com.rest.api.constants.ApplicationConstants;
+import app.models.Event;
+
+import com.rest.api.constants.UserMesseagesConstants;
 import com.rest.api.messenger.database.DatabaseFactory;
-import com.rest.api.messenger.models.Event;
 
 public class EventManager {
 	
@@ -31,7 +32,7 @@ public class EventManager {
 	public String addNewEvent(Event event) {
 		event.setId(eventsMap.size()+1);
 		eventsMap.put(event.getId(), event);
-		return ApplicationConstants.EVENT_ADD_SUCCESS_MSG;
+		return UserMesseagesConstants.EVENT_ADD_SUCCESS_MSG;
 	}
 	
 	public String updateEvent(Event event) {
@@ -42,7 +43,7 @@ public class EventManager {
 			eventsMap.remove(event.getId());
 		}
 		eventsMap.put(event.getId(), event);
-		return ApplicationConstants.EVENT_UPDATE_SUCCESS_MSG;
+		return UserMesseagesConstants.EVENT_UPDATE_SUCCESS_MSG;
 	}
 	
 	public String removeEvent(long id) {
@@ -51,7 +52,7 @@ public class EventManager {
 			event = eventsMap.get(id);
 			eventsMap.remove(id);
 		}
-		return ApplicationConstants.EVENT_REMOVE_SUCCESS_MSG;
+		return UserMesseagesConstants.EVENT_REMOVE_SUCCESS_MSG;
 	}
 	
 	public Event getEvent(long id) {

@@ -12,8 +12,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import app.models.Event;
+
 import com.rest.api.messenger.managers.EventManager;
-import com.rest.api.messenger.models.Event;
 
 @Path("/events")
 @Produces(MediaType.APPLICATION_JSON)
@@ -24,6 +25,7 @@ public class EventResource extends BaseResource{
 	
 	@GET
 	public List<Event> getEvents() {
+		
 		return eventManager.getEvents();
 	}
 	

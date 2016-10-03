@@ -29,5 +29,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="D:/CodeExamples/apache-tomcat-7.0.70/apache-tomcat-7.0.70/lib/servlet-api.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/AppStructure"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
