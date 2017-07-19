@@ -7,8 +7,9 @@ import java.util.Map;
 
 import app.models.Event;
 
-import com.rest.api.constants.UserMesseagesConstants;
+import com.rest.api.constants.UserMessagesConstants;
 import com.rest.api.messenger.database.DatabaseFactory;
+import com.rest.api.messenger.exception.DataNotFoundException;
 
 public class EventManager {
 	
@@ -17,12 +18,12 @@ public class EventManager {
 	public EventManager() {
 		eventsMap.put(1L, new Event(1, "Weekly Meeting", "Meeting", "Meeting Description", 
 				"Pune", "Sanjeet", "9503462575",
-				"2016-10-01T18:30:00.000Z",
-						"2016-10-01T18:30:00.000Z"));
+				new Date(),
+			    new Date()));
 		eventsMap.put(2L, new Event(2, "Weekly Meeting", "Meeting", "Meeting Description", 
 				"Mumbai", "Pravin", "9503462575",
-				"2016-10-01T18:30:00.000Z",
-				"2016-10-01T18:30:00.000Z"));
+				new Date(),
+				new Date()));
 	}
 
 	public List<Event> getEvents(){
@@ -32,7 +33,7 @@ public class EventManager {
 	public String addNewEvent(Event event) {
 		event.setId(eventsMap.size()+1);
 		eventsMap.put(event.getId(), event);
-		return UserMesseagesConstants.EVENT_ADD_SUCCESS_MSG;
+		return UserMessagesConstants.EVENT_ADD_SUCCESS_MSG;
 	}
 	
 	public String updateEvent(Event event) {
@@ -43,7 +44,7 @@ public class EventManager {
 			eventsMap.remove(event.getId());
 		}
 		eventsMap.put(event.getId(), event);
-		return UserMesseagesConstants.EVENT_UPDATE_SUCCESS_MSG;
+		return UserMessagesConstants.EVENT_UPDATE_SUCCESS_MSG;
 	}
 	
 	public String removeEvent(long id) {
@@ -52,10 +53,14 @@ public class EventManager {
 			event = eventsMap.get(id);
 			eventsMap.remove(id);
 		}
-		return UserMesseagesConstants.EVENT_REMOVE_SUCCESS_MSG;
+		return UserMessagesConstants.EVENT_REMOVE_SUCCESS_MSG;
 	}
 	
 	public Event getEvent(long id) {
-		return eventsMap.get(id);
+		Event event = eventsMap.get(id);
+		if(event == null){
+			throw new DataNotFoundException("Event not found with event id "+id);
+		}
+		return event;
 	}
 }

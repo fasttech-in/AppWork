@@ -3,6 +3,7 @@
 	<name>Messenger</name>
 	<comment></comment>
 	<projects>
+		<project>AppStructure</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

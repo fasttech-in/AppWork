@@ -25,7 +25,6 @@ public class EventResource extends BaseResource{
 	
 	@GET
 	public List<Event> getEvents() {
-		
 		return eventManager.getEvents();
 	}
 	
